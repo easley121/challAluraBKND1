@@ -6,7 +6,7 @@ import java.net.http.HttpResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
+//Metodo para hacer los HTTP Request y obtener el Json usango la libreria de Gson
 public class exchangeRateAPI implements currencyConverterAPI {
     private static final String API_URL = "https://v6.exchangerate-api.com/v6/737c3400e04069e37046df6d/latest/";
 
@@ -29,6 +29,7 @@ public class exchangeRateAPI implements currencyConverterAPI {
                 if (rates.has(targetCurrency)) {
                     return rates.get(targetCurrency).getAsDouble();
                 } else {
+                    //Implementacion de exepciones
                     throw new IOException("Moneda destino no encontrada: " + targetCurrency);
                 }
             } else {

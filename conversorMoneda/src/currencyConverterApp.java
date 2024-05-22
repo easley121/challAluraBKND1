@@ -3,16 +3,18 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class currencyConverterApp {
+    //Default para las monedas a usar
     private static String baseCurrency = "MXN";
     private static String targetCurrency = "USD";
-
+    //Metodo principal
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         currencyConverterAPI api = new exchangeRateAPI();
         currencyConverter converter = new currencyConverter(api);
-
+        //Uso de boleano para darle un fin al While
         boolean continuar = true;
         while (continuar) {
+            //While de implementacion del menu para el usuario
             System.out.println("Menú: (Recuerda que la conversion base es de MXN a USD");
             System.out.println("1. Convertir");
             System.out.println("2. Cambiar la moneda a convertir");
@@ -39,7 +41,7 @@ public class currencyConverterApp {
 
         scanner.close();
     }
-
+    //Metodo para dar la primer conversion de moneda, pide la cantidad y muestra una exepcion si hay error en la conversion
     private static void convertirMoneda(Scanner scanner, currencyConverter converter) {
         boolean continuar = true;
 
@@ -55,8 +57,7 @@ public class currencyConverterApp {
                 System.out.println("Error en la conversión: " + e.getMessage());
             }
 
-            // Solicitar al usuario si desea continuar convirtiendo otro número,
-            // cambiar la cantidad o regresar al menú principal
+
             System.out.println("¿Qué desea hacer a continuación?");
             System.out.println("1. Convertir otra cantidad");
             System.out.println("2. Cambiar la moneda a convertir");
@@ -67,7 +68,7 @@ public class currencyConverterApp {
 
             switch (opcion) {
                 case 1:
-                    // Solicitar solo la cantidad a convertir
+                  //Cuando da un resultado pide otra opcion para convertir, cambiar moneda o regresar al menu principal
                     System.out.println("Ingrese la cantidad a convertir: ");
                     amount = obtenerCantidad(scanner);
                     try {
@@ -92,7 +93,7 @@ public class currencyConverterApp {
         }
     }
 
-
+    //Metodo para cambiar la moneda, usa el mismo catalogo de 3 opciones que seleccionarMoneda
     private static void cambiarMoneda(Scanner scanner) {
         System.out.println("Seleccione la nueva moneda base:");
         baseCurrency = seleccionarMoneda(scanner, "base");
@@ -100,7 +101,7 @@ public class currencyConverterApp {
         targetCurrency = seleccionarMoneda(scanner, "destino");
         System.out.println("Monedas actualizadas: " + baseCurrency + " a " + targetCurrency);
     }
-
+        //Metodo seleccionarMoneda, brinda un catalogo de las monedas a convertir
     private static String seleccionarMoneda(Scanner scanner, String tipoMoneda) {
         String[] monedasSoportadas = {"MXN", "USD", "BRL"};
         int opcion = -1;
@@ -124,6 +125,7 @@ public class currencyConverterApp {
 
         return monedasSoportadas[opcion - 1];
     }
+    //Metodos para acegurarce que sea un numero la cantidad a convertir
     private static int obtenerOpcion(Scanner scanner) {
         int opcion = -1;
         boolean valido = false;
