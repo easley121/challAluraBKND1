@@ -2,6 +2,7 @@
 
 Esta es una aplicación simple de conversión de monedas en Java que utiliza la API de ExchangeRate-API para obtener los tipos de cambio actuales. 
 La aplicación permite al usuario convertir una cantidad de una moneda base a una moneda destino seleccionadas, cambiar las monedas base y destino, y finalizar el programa.
+Se intentara agregar las funcionalidades extra si el tiempo lo permite.
 
 ## Características
 
